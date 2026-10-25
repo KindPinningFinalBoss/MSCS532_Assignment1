@@ -28,3 +28,31 @@ def insertion_sort_desc(arr):
             i -= 1
         arr[i + 1] = key
     return arr
+
+
+def _is_descending(arr):
+    """True if every element is greater than or equal to the next one."""
+    return all(arr[k] >= arr[k + 1] for k in range(len(arr) - 1))
+
+
+def main():
+    samples = [
+        [5, 2, 4, 6, 1, 3],
+        [],
+        [42],
+        [9, 9, 1, 9, 2],
+        [1, 2, 3, 4, 5],
+        [5, 4, 3, 2, 1],
+        [-3, 7, 0, -8, 4],
+    ]
+    for data in samples:
+        original = list(data)
+        result = insertion_sort_desc(data)
+        print(f"{original}  ->  {result}")
+        assert _is_descending(result), f"not descending: {result}"
+        assert sorted(original, reverse=True) == result, "elements changed"
+    print("\nAll checks passed.")
+
+
+if __name__ == "__main__":
+    main()
